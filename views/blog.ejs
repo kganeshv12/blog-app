@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include('./partials/head') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Blog Page</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <% if(locals.blogs) {%>
+        <div class="container mt-4">
+            <h1 class="container mt-3"><%= blogs.title  %></h1>
+            <img  src="<%= blogs.coverImageURL %>" alt="coverImageURL" height="500px" >
+            <br><br><br>
+            <p class="container mt-3"><%= blogs.body %></p>
+
+            <br>
+            <br>
+            <h3>Written by :</h3>
+        </div>
+        <div class="container mt-3" style="display: flex; align-items: center;">
+            <br>
+            <img src="<%= blogs.createdBy.profileImageURL %>" alt="dp" height="80px">
+            <div>
+                <h5><%= blogs.createdBy.fullName %></h5>
+            </div>
+            
+        </div>
+        
+    <% } %>
+    <div class="container mt-4 mb-4">
+    <hr>
+    <% if (locals.comments) { %>
+        <h3>Comments : (<%= comments.length %>)</h3>
+     <% comments.forEach(element => { %>
+        <img src="<%= element.createdBy.profileImageURL %>" alt="dp" height="30px"> <%= element.createdBy.fullName %>
+        <pre><%= element.content %></pre>
+     <% }) %>
+    <% } %>
+    <% if(locals.user) {%>
+        <form action="/blog/comment/<%= blogs._id %>" method="post" >
+                <input type="text" class="form-control" name="content" placeholder="Enter your comment here...">
+                <br>
+                <button type="submit" class="btn btn-sm btn-primary">Add</button>
+            </form>
+        <% } %>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+</html>
