@@ -25,6 +25,9 @@ A full-featured blog application built with Node.js, Express.js, and EJS, using 
 ### View Blog
 ![img](static/4.png)
 
+### Database View
+![img](static/5.png)
+
 ## Technologies Used
 
 - Node.js
